@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Page>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\News>
  */
-class PageFactory extends Factory
+class NewsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,10 @@ class PageFactory extends Factory
     public function definition()
     {
         return [
+            'published_at' => $this->faker->boolean ? 
+            $this->faker->dateTimeBetween('-2 weeks', '+2 weeks') : null,
             'title' => $this->faker->realTextBetween(20, 50),
-            'text' => $this->faker->realTextBetween(250, 1000),     
+            'text' => $this->faker->realTextBetween(250, 1000),    
         ];
     }
 }
