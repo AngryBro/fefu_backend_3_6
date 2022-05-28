@@ -3,10 +3,15 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{$page->title}}</title>
     </head>
     <body>
-        <h1>{{$page->title}}</h1>
-        <p>{{$page->text}}</p>
+        @foreach ($newsList as $news)
+            <h1>{{ $news->title }}</h1>
+            <p>{{ $news->text }}</p>
+            <p>{{ $news->published_at }}</p>
+        @endforeach
+
+
+        {{ $newsList->links() }}
     </body>
 </html>
