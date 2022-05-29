@@ -20,7 +20,7 @@ class NewsFactory extends Factory
             'published_at' => $this->faker->boolean ? 
             $this->faker->dateTimeBetween('-2 weeks', '+2 weeks') : null,
             'title' => $this->faker->realTextBetween(20, 50),
-            'text' => $this->faker->realTextBetween(250, 1000),    
+            'text' => $this->faker->realTextBetween(250, 1000),     
         ];
     }
 }

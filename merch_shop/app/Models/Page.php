@@ -9,13 +9,12 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Page extends Model
 {
     use HasFactory, Sluggable;
-
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
-    }
+	
+	public function sluggable() : array {
+		return [
+			'slug'=> [
+				'source'=>'title'
+			]
+		];
+	}
 }

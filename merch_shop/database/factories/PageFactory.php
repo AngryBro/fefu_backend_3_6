@@ -17,8 +17,8 @@ class PageFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->realTextBetween(20, 50),
-            'text' => $this->faker->realTextBetween(250, 1000),     
+            'title'=>$this->faker->realTextBetween(20,50),
+			'text'=>$this->faker->realTextBetween(250,1000)
         ];
     }
 }

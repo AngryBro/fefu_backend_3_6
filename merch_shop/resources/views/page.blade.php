@@ -7,6 +7,6 @@
     </head>
     <body>
         <h1>{{$page->title}}</h1>
-        <p>{{$page->text}}</p>
+		<p>{{$page->text}}</p>
     </body>
 </html>
