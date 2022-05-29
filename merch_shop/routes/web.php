@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageWebController;
 use App\Http\Controllers\NewsWebController;
+use App\Http\Controllers\AppealWebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,6 @@ Route::get('/pages', [PageWebController::class, 'index']);
 Route::get('/pages/{slug}', [PageWebController::class, 'show']);
 Route::get('/news', [NewsWebController::class, 'index']);
 Route::get('/news/{slug}', [NewsWebController::class, 'show']);
+
+Route::get('/appeal', [AppealWebController::class, 'form'])->name('appeal.form');
+Route::post('/appeal', [AppealWebController::class, 'send'])->name('appeal.send');
