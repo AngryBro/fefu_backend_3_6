@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreNewsRequest extends FormRequest
+class AppealFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,18 +13,21 @@ class StoreNewsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function rules()
     {
         return [
-            //
+            'name' => ['required','string','max:100'],
+            'phone' => ['nullable','string', 'regex:/(^([+]7|8)+\d{10}$)/i'],
+            'email' => ['nullable', 'email:rfc'],
+            'message' => ['required','string','max:1000'],
         ];
     }
 }
