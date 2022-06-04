@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageApiController;
 use App\Http\Controllers\AuthApiController;
 use App\Http\Controllers\NewsApiController;
+use App\Http\Controllers\AppealApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,8 @@ Route::apiResource('news', NewsApiController::class)->only([
 Route::apiResource('pages', PageApiController::class)->only([
     'index',
     'show',
+]);
+
+Route::apiResource('appeal', AppealApiController::class)->only([
+    'store',
 ]);
