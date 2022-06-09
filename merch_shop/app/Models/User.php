@@ -7,10 +7,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Hash;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    static function createFromRequest(array $requestData) : self {
+        $user = new self();
+        $user->name = $requestData['name'];
+        $user->email = $requestData['email'];
+        $user->password = Hash::make($requestData['password']);
+        $user->save();
+        return $user;
+    }
 
     /**
      * The attributes that are mass assignable.
