@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\User;
 
-class AppealFormRequest extends FormRequest
+class BaseLoginFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +24,8 @@ class AppealFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','string','max:100'],
-            'phone' => ['nullable','string', 'regex:/(^([+]7|8)+\d{10}$)/i'],
-            'email' => ['nullable', 'email:rfc'],
-            'message' => ['required','string','max:1000'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:1|max:255'],
         ];
     }
 }

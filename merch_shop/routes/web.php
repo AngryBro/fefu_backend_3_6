@@ -3,6 +3,9 @@
 use App\Http\Controllers\PageWebController;
 use App\Http\Controllers\NewsWebController;
 use App\Http\Controllers\AppealWebController;
+use App\Http\Controllers\AuthWebController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +32,15 @@ Route::get('/news/{slug}', [NewsWebController::class, 'show']);
 
 Route::get('/appeal', [AppealWebController::class, 'form'])->name('appeal.form');
 Route::post('/appeal', [AppealWebController::class, 'send'])->name('appeal.send');
+
+Route::get('/login', [AuthWebController::class, 'loginForm'])->name('login');
+Route::get('/register', [AuthWebController::class, 'registerForm'])->name('register');
+Route::post('/register', [AuthWebController::class, 'register'])->name('register.post');
+Route::post('/login', [AuthWebController::class, 'login'])->name('login.post');
+Route::post('/logout',[AuthWebController::class, 'logout'])->name('logout');
+Route::get('/profile',[ProfileController::class,'show'])->name('profile')->middleware('auth');
+
+Route::prefix('/oauth')->group(function () {
+    Route::get('/{provider}/redirect', [OAuthController::class, 'redirectToService'])->name('oauth.redirect');
+    Route::get('/{provider}/login', [OAuthController::class, 'login'])->name('oauth.login');
+});
