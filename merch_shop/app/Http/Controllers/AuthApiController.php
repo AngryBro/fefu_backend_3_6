@@ -25,7 +25,7 @@ class AuthApiController extends Controller
     /**
      * Display user data.
      *
-     * @return \Illuminate\Http\Responseble
+     * @return \Illuminate\Http\Responsable
      */
     #[OpenApi\Operation(tags: ["auth"])]
     #[OpenApi\Response(factory: UserResponse::class, statusCode: 200)]
