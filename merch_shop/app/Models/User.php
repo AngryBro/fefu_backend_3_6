@@ -39,7 +39,9 @@ class User extends Authenticatable
         'github_registered_at',
         'vkontakte_id',
         'vkontakte_logged_in_at',
-        'vkontakte_registered_at'
+        'vkontakte_registered_at',
+        'app_logged_in_at',
+        'app_registered_at'
     ];
 
     /**
@@ -51,9 +53,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'github_id',
-        'vkontakte_id',
-        'app_logged_in_at',
-        'app_registered_at'
+        'vkontakte_id'
     ];
 
     /**

@@ -8,6 +8,11 @@
     <body>
         <h1>Профиль</h1>
         <div>
+            <h3>App info:</h3>
+            <label>
+                <b>Last login date: </b>{{$user['app_logged_in_at'] ?? 'Never'}}<br/>
+                <b>Registration date: </b>{{$user['app_registered_at'] ?? 'Never'}}
+            </label>
             <h3>OAuth info:</h3>
             <h4>GitHub:</h4>
             <label>

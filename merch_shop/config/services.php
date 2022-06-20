@@ -34,14 +34,14 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'http://localhost/oauth/github/login',
+        'redirect' => env('GITHUB_REDIRECT_URI'),
         'scopes' => ['read:user']
     ],
 
     'vkontakte' => [
         'client_id' => env('VKONTAKTE_CLIENT_ID'),
         'client_secret' => env('VKONTAKTE_CLIENT_SECRET'),
-        'redirect' => 'http://localhost/oauth/vkontakte/login',
+        'redirect' => env('VKONTAKTE_REDIRECT_URI'),
         'scopes' => ['read:user']
     ]
 

@@ -38,6 +38,7 @@ Route::get('/register', [AuthWebController::class, 'registerForm'])->name('regis
 Route::post('/register', [AuthWebController::class, 'register'])->name('register.post');
 Route::post('/login', [AuthWebController::class, 'login'])->name('login.post');
 Route::post('/logout',[AuthWebController::class, 'logout'])->name('logout');
+Route::get('/logout',[AuthWebController::class, 'logout'])->name('logout');
 Route::get('/profile',[ProfileController::class,'show'])->name('profile')->middleware('auth');
 
 Route::prefix('/oauth')->group(function () {
