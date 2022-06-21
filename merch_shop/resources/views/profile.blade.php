@@ -7,6 +7,26 @@
     </head>
     <body>
         <h1>Профиль</h1>
+        <div>
+            <h3>App info:</h3>
+            <label>
+                <b>Last login date: </b>{{$user['app_logged_in_at'] ?? 'Never'}}<br/>
+                <b>Registration date: </b>{{$user['app_registered_at'] ?? 'Never'}}
+            </label>
+            <h3>OAuth info:</h3>
+            <h4>GitHub:</h4>
+            <label>
+                <b>Last login date: </b>{{$user['github_logged_in_at'] ?? 'Never'}}<br/>
+                <b>Registration date: </b>{{$user['github_registered_at'] ?? 'Never'}}
+            </label>
+        </div>
+        <div>
+            <h4>VK:</h4>
+            <label>
+                <b>Last login date: </b>{{$user['vkontakte_logged_in_at'] ?? 'Never'}}<br/>
+                <b>Registration date: </b>{{$user['vkontakte_registered_at'] ?? 'Never'}}
+            </label>
+        </div>
         <form method='post' action="{{ route('logout') }}">
             @csrf
             <button type='submit'>Выйти</button>

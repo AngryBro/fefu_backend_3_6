@@ -5,6 +5,7 @@ use App\Http\Controllers\NewsWebController;
 use App\Http\Controllers\AppealWebController;
 use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,8 @@ Route::post('/register', [AuthWebController::class, 'register'])->name('register
 Route::post('/login', [AuthWebController::class, 'login'])->name('login.post');
 Route::post('/logout',[AuthWebController::class, 'logout'])->name('logout');
 Route::get('/profile',[ProfileController::class,'show'])->name('profile')->middleware('auth');
+
+Route::prefix('/oauth')->group(function () {
+    Route::get('/{provider}/redirect', [OAuthController::class, 'redirectToService'])->name('oauth.redirect');
+    Route::get('/{provider}/login', [OAuthController::class, 'login'])->name('oauth.login');
+});

@@ -12,14 +12,11 @@
             <table>
                 <tr>
                     <th>Имя</th>
-                    <td><input name='name' value="{{ old('name') }}"></input></td>
-                    @error('email')
-                        <div class='alert alert-danger'>{{ $message }}</div>
-                    @enderror
+                    <td><input name='name' value="{{old('name')}}"></input></td>
                 </tr>
                 <tr>
                     <th>E-mail</th>
-                    <td><input name='email' value="{{ old('email') }}"></input></td>
+                    <td><input name='email' value="{{old('email')}}"></input></td>
                     @error('email')
                         <div class='alert alert-danger'>{{ $message }}</div>
                     @enderror

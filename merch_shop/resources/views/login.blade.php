@@ -29,6 +29,8 @@
                     <td><input type='submit'></input></td>
                 </tr>
             </table>
-        </form>
+        </form><br>
+        <a href="{{route('oauth.redirect', ['provider' => 'github'])}}">Войти через GitHub</a><br/>
+        <a href="{{route('oauth.redirect', ['provider' => 'vkontakte'])}}">Войти через VK</a><br/>
     </body>
 </html>
