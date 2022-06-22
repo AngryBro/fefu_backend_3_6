@@ -14,7 +14,7 @@ class CatalogWebController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(string $slug)
+    public function index(?string $slug)
     {
         $query = ProductCategory::query()
             ->with('children','products');
