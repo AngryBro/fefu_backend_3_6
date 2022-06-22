@@ -6,6 +6,7 @@ use App\Http\Controllers\AppealWebController;
 use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\CatalogWebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,3 +45,5 @@ Route::prefix('/oauth')->group(function () {
     Route::get('/{provider}/redirect', [OAuthController::class, 'redirectToService'])->name('oauth.redirect');
     Route::get('/{provider}/login', [OAuthController::class, 'login'])->name('oauth.login');
 });
+
+Route::get('/catalog',[CatalogWebController::class,'index'])->name('catalog');
