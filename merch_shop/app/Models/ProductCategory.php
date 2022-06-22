@@ -23,4 +23,31 @@ class ProductCategory extends Model
     function children() {
         return $this->hasMany(self::class,'parent_id');
     }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public static function getTreeProductsBuilder($categories)
+    {
+        $categoryIds = [];
+
+        if ($categories->isEmpty()){
+            throw new Exception('no categories');
+        }
+
+        $collectCategoryIds = function (ProductCategory $category) use (&$categoryIds, &$collectCategoryIds) {
+            $categoryIds[] = $category->id;
+            foreach ($category->children as $childCategory) {
+                $collectCategoryIds($childCategory);
+            }
+        };
+
+        foreach ($categories as $category){
+            $collectCategoryIds($category);
+        }
+
+        return Product::query()->whereIn('product_category_id', $categoryIds);
+    }
 }

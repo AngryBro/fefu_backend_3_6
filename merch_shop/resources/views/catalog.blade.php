@@ -8,10 +8,16 @@
     <body>
         Каталог
         <div>
-            @include('catalogList',['categories' => $categories])
-            {{-- @foreach ($categories as $category)
-                {{count($category->children).' '}}
-            @endforeach --}}
+            @include('catalogList', ['categories', $categories])
+            @foreach ($products as $product)
+            <article>
+                <a href="{{ route('product', $product->slug) }}">
+                    <h3>{{ $product->name }}</h3>
+                </a>
+                <p>{{ $product->price }} руб.</p>
+            </article>
+            @endforeach
+            {{ $products->links() }}
         </div>
     </body>
 </html>

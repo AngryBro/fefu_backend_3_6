@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\CatalogWebController;
+use App\Http\Controllers\ProductWebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,4 +47,5 @@ Route::prefix('/oauth')->group(function () {
     Route::get('/{provider}/login', [OAuthController::class, 'login'])->name('oauth.login');
 });
 
-Route::get('/catalog',[CatalogWebController::class,'index'])->name('catalog');
+Route::get('/catalog/{slug?}', [CatalogWebController::class, 'index'])->name('catalog');
+Route::get('/catalog/product/{slug}', [ProductWebController::class, 'index'])->name('product');
