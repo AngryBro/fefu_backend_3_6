@@ -14,13 +14,27 @@ class CatalogWebController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($slug=null)
     {
         $categories = ProductCategory::query()
-            ->with('children')
-            ->where('parent_id')
-            ->get();
-        return view('catalog',['categories' => $categories]);
+            ->with('children','products');
+            if($slug===null) {
+                $categories->where('parent_id');
+            }
+            else {
+                $categories->where('slug',$slug);
+            }
+
+            $categories = $categories->get();
+
+        $products = ProductCategory::getTreeProductsBuilder($categories)
+            ->orderBy('id')
+            ->paginate();
+
+        return view('catalog',[
+            'categories' => $categories,
+            'products' => $products
+    ]);
     }
 
 }

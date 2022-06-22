@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthApiController;
 use App\Http\Controllers\NewsApiController;
 use App\Http\Controllers\CatalogApiController;
 use App\Http\Controllers\AppealApiController;
+use App\Http\Controllers\ProductApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,11 @@ Route::middleware('auth:sanctum')->group( function () {
 
 Route::post('login', [AuthApiController::class, 'login']);
 Route::post('register', [AuthApiController::class, 'register']);
+
+Route::prefix('catalog')->group(function () {
+    Route::get('product/list', [ProductApiController::class, 'index']);
+    Route::get('product/details', [ProductApiController::class, 'show']);
+});
 
 Route::apiResource('news', NewsApiController::class)->only([
     'index',
