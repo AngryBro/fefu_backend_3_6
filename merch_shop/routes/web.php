@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\CatalogWebController;
 use App\Http\Controllers\ProductWebController;
+use App\Http\Controllers\CartWebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,3 +50,5 @@ Route::prefix('/oauth')->group(function () {
 
 Route::get('/catalog/{slug?}', [CatalogWebController::class, 'index'])->name('catalog');
 Route::get('/catalog/product/{slug}', [ProductWebController::class, 'index'])->name('product');
+
+Route::get('/cart', CartWebController::class)->middleware('auth.optional');
