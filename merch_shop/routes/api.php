@@ -9,6 +9,7 @@ use App\Http\Controllers\CatalogApiController;
 use App\Http\Controllers\AppealApiController;
 use App\Http\Controllers\ProductApiController;
 use App\Http\Controllers\CartApiController;
+use App\Http\Controllers\OrderApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::prefix('catalog')->group(function () {
 });
 
 Route::post('/cart/set_quantity',CartApiController::class)->middleware('auth.optional');
+
+Route::post('/order/store', [ OrderApiController::class, 'store']);
 
 Route::apiResource('news', NewsApiController::class)->only([
     'index',
