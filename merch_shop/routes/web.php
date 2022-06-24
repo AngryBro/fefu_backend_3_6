@@ -9,6 +9,7 @@ use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\CatalogWebController;
 use App\Http\Controllers\ProductWebController;
 use App\Http\Controllers\CartWebController;
+use App\Http\Controllers\OrderWebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,3 +53,11 @@ Route::get('/catalog/{slug?}', [CatalogWebController::class, 'index'])->name('ca
 Route::get('/catalog/product/{slug}', [ProductWebController::class, 'index'])->name('product');
 
 Route::get('/cart', CartWebController::class)->middleware('auth.optional');
+
+Route::get('/checkout', [ OrderWebController::class, 'index'])
+    ->middleware('auth')
+    ->name('checkout.get');
+
+Route::post('/checkout', [ OrderWebController::class, 'store'])
+    ->middleware('auth')
+    ->name('checkout.post');
