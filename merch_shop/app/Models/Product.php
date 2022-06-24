@@ -39,4 +39,8 @@ class Product extends Model
             ->orderBy('product_attributes.sort_order')
             ->orderBy('product_attributes.id');
     }
+
+    function scopeSearch(Builder $builder, string $searchQuery) : Builder{
+        return $builder->where('products.name', 'ilike', "%$searchQuery%");
+    }
 }

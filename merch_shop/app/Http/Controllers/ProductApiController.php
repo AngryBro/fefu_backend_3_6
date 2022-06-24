@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ListProductResource;
-use App\Http\Resources\DetailedProductResource;
+use App\Http\Resources\ListProductsResources;
+use App\Http\Resources\DetailedProductResources;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 use App\OpenApi\Parameters\ProductsListParameters;
 use App\OpenApi\Parameters\ProductDetailsParameters;
 use App\OpenApi\Responses\ProductsListResponse;
+use App\Http\Filters\ProductFilter;
 use App\OpenApi\Responses\ErrorValidationResponse;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
@@ -52,7 +53,21 @@ class ProductApiController extends Controller
             ], 422);
         }
 
-        return ListProductResource::collection($products);
+        $appliedFilters = $requestData['filters'] ?? [];
+        ProductFilter::apply($query, $appliedFilters);
+
+        if (isset($requestData['search_query'])) {
+            $products->search($requestData['search_query']);
+        }
+
+        $sortMode = $requestData['sort_mode'] ?? null;
+        if ($sortMode === 'price_asc') {
+            $products->orderBy('price');
+        } else if ($sortMode === 'price_desc') {
+            $products->orderBy('price', 'desc');
+        }
+
+        return ListProductsResources::collection($products);
     }
     /**
      * Returning a product resource by the requested slug
@@ -65,7 +80,7 @@ class ProductApiController extends Controller
     #[OpenApi\Parameters(factory: ProductDetailsParameters::class)]
     public function show(Request $request) {
         $slug = $request->query('product_slug');
-        return new DetailedProductResource(
+        return new DetailedProductResources(
             Product::query()
                 ->with('productCategory', 'sortedAttributeValues.productAttribute')
                 ->where('slug', $slug)
